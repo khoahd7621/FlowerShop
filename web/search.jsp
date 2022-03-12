@@ -39,6 +39,9 @@
                 </span>
             </div>
         </div>
+        <!-- Toast MSG -->
+        <div id="toast"></div>
+        <!-- Search Session -->
         <c:if test="${not empty requestScope.NO_RESULT}">
             <!-- No Result -->
             <div id="no-result" class="mb-5">
@@ -122,10 +125,7 @@
                                         <!-- Product actions-->
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                             <div class="text-center">
-                                                <c:url var="addLink" value="AddToCartController">
-                                                    <c:param name="pid" value="${L.id}"></c:param>
-                                                </c:url>
-                                                <a href="AddToCartController?pid=${L.id}" class="btn btn-outline-dark mt-auto w-50"><i
+                                                <a onclick="addToCartAsync(${L.id})" class="btn btn-outline-dark mt-auto w-50"><i
                                                         class="bi bi-cart-plus-fill"></i></a>
                                             </div>
                                         </div>
@@ -166,9 +166,12 @@
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS -->
-        <script src="js/scripts.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/my-scripts.js"></script>
+        <!-- Axios Async -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="js/toast-alert.js"></script>
+        <script src="js/add-to-cart-async.js"></script>
     </body>
 
 </html>

@@ -58,7 +58,7 @@
                         </c:forEach>
                     </div>
                     <!-- Search order by date -->
-                    <form action="SearchOrderServlet" class="mt-3">
+                    <form action="SearchOrderController" class="mt-3">
                         <label class="fs-4">Search order</label>
                         <div class="form-group">
                             <label for="dp1">From: </label>

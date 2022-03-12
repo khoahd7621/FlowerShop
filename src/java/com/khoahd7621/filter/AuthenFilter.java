@@ -58,7 +58,7 @@ public class AuthenFilter implements Filter {
         ADMIN_LIST.add("UpdateAccountController");
         ADMIN_LIST.add("UpdateCategoryController");
         ADMIN_LIST.add("UpdatePlantController");
-        ADMIN_LIST.add("AdminSearchOrderServlet");
+        ADMIN_LIST.add("AdminSearchOrderController");
         ADMIN_LIST.add("SendEmailController");
 
         USER_LIST = new ArrayList<>();
@@ -70,7 +70,7 @@ public class AuthenFilter implements Filter {
         USER_LIST.add("product.jsp");
         USER_LIST.add("LogoutController");
         USER_LIST.add("HomeController");
-        USER_LIST.add("SearchOrderServlet");
+        USER_LIST.add("SearchOrderController");
         USER_LIST.add("UpdateUserController");
         USER_LIST.add("UpdateOrderController");
         USER_LIST.add("UserHomeController");
@@ -85,6 +85,7 @@ public class AuthenFilter implements Filter {
         USER_LIST.add("SearchController");
         USER_LIST.add("AboutUsController");
         USER_LIST.add("LoadMoreController");
+        USER_LIST.add("AddToCartAsyncController");
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
@@ -200,14 +201,15 @@ public class AuthenFilter implements Filter {
                         || uri.contains("about.jsp")
                         || uri.contains("HomeController")
                         || uri.contains("ViewAllController")
-                        || uri.contains("SendEmailController")) {
+                        || uri.contains("SendEmailController")
+                        || uri.contains("AddToCartAsyncController")) {
                     chain.doFilter(request, response);
                 } else {
                     res.sendRedirect(HOME);
                 }
             }
         } catch (Exception e) {
-
+            log("Error at AuthenFilter: " + e.toString());
         }
 
     }

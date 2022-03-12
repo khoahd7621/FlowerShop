@@ -16,10 +16,10 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "home" ? "active" : ""}" aria-current="page" href="HomeController">Home</a></li>
                 <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "about" ? "active" : ""}" href="AboutUsController">About</a></li>
-                <c:if test="${not empty sessionScope.LOGIN_USER && sessionScope.LOGIN_USER.role eq 0}">
+                    <c:if test="${not empty sessionScope.LOGIN_USER && sessionScope.LOGIN_USER.role eq 0}">
                     <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "user" ? "active" : ""}" href="UserHomeController">Personal Page</a></li>
                     <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "order" ? "active" : ""}" href="UserViewOrderController">Orders</a></li>
-                </c:if>
+                    </c:if>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle ${sessionScope.destPage eq "plant" ? "active" : ""}" id="navbarDropdown" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
@@ -48,10 +48,10 @@
                     <c:url var="viewCartLink" value="CartController"></c:url>
                     <a href="${viewCartLink}" class="btn btn-outline-dark me-2">
                         <i class="bi-cart-fill me-1"></i>
-                        <span class="badge bg-danger text-white ms-1 rounded-pill">${(sessionScope.carts == null) || (sessionScope.carts.size() == 0) ? "0" : sessionScope.carts.size()}</span>
+                        <span id="cartNum" class="badge bg-danger text-white ms-1 rounded-pill">${(sessionScope.carts == null) || (sessionScope.carts.size() == 0) ? "0" : sessionScope.carts.size()}</span>
                     </a>
                     <div class="dropdown-menu" style="width: 350px; margin-right: 6px;">
-                        <div class="cart-box">
+                        <div id="cartBox" class="cart-box">
                             <c:choose>
                                 <c:when test="${(sessionScope.carts == null) || (sessionScope.carts.size() == 0)}">
                                     <div class="empty-cart text-center">
@@ -61,22 +61,24 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div class="unempty-cart">
-                                        <div class="text-start ms-4">New products added</div>
-                                        <c:forEach items="${sessionScope.carts}" var="C">
-                                            <div class="product row mt-2 w-100 m-0">
-                                                <div class="col-3">
-                                                    <img class="img-fluid border border-1"
-                                                         src="${C.value.plant.imgPath}"
-                                                         alt="Product Images">
+                                        <div class="text-start ms-4 pt-2 pb-2 fs-5 fw-bold">New products added</div>
+                                        <div id="cartBoxBody">
+                                            <c:forEach items="${sessionScope.carts}" var="C">
+                                                <div class="product row mt-2 w-100 m-0">
+                                                    <div class="col-3">
+                                                        <img class="img-fluid border border-1"
+                                                             src="${C.value.plant.imgPath}"
+                                                             alt="Product Images">
+                                                    </div>
+                                                    <div class="col-6 default-cursor">
+                                                        ${C.value.plant.name}
+                                                    </div>
+                                                    <div class="col-3 default-cursor text-danger">
+                                                        $${C.value.plant.price}
+                                                    </div>
                                                 </div>
-                                                <div class="col-6 default-cursor">
-                                                    ${C.value.plant.name}
-                                                </div>
-                                                <div class="col-3 default-cursor text-danger">
-                                                    $${C.value.plant.price}
-                                                </div>
-                                            </div>
-                                        </c:forEach>
+                                            </c:forEach>
+                                        </div>
                                         <div class="text-end pt-3 pe-3">
                                             <c:url var="viewCartLink" value="CartController"></c:url>
                                             <a href="${viewCartLink}" class="btn btn-danger pe-3">View cart</a>

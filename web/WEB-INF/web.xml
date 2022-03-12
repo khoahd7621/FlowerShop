@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-<!--    <filter>
+    <!--    <filter>
         <filter-name>FilterDispatcher</filter-name>
         <filter-class>com.khoahd7621.filter.FilterDispatcher</filter-class>
     </filter>
@@ -18,131 +18,135 @@
     </filter-mapping>
     <servlet>
         <servlet-name>HomeController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.HomeController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.HomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadMoreController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.LoadMoreController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.LoadMoreController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.SearchController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.SearchController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewAllController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.ViewAllController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.ViewAllController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PlantDetailController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.PlantDetailController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.PlantDetailController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddToCartController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AddToCartController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.AddToCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.CartController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.CartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateCartQuantityController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UpdateCartQuantityController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UpdateCartQuantityController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteCartController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.DeleteCartController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.DeleteCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CheckOutController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.CheckOutController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.CheckOutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.LoginController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegistrationController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.RegistrationController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.RegistrationController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.LogoutController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.LogoutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AboutUsController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AboutUsController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.AboutUsController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserViewOrderController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UserViewOrderController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UserViewOrderController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateOrderController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UpdateOrderController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UpdateOrderController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserViewOrderDetailController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UserViewOrderDetailController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UserViewOrderDetailController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchOrderServlet</servlet-name>
-        <servlet-class>com.khoahd7621.controller.SearchOrderServlet</servlet-class>
+        <servlet-name>SearchOrderController</servlet-name>
+        <servlet-class>com.khoahd7621.controller.sync.SearchOrderController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateUserController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UpdateUserController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UpdateUserController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminHomeController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AdminHomeController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.AdminHomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminManageAccountController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AdminManageAccountController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.AdminManageAccountController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateAccountController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UpdateAccountController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UpdateAccountController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminManageOrderController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AdminManageOrderController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.AdminManageOrderController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangeOrderController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.ChangeOrderController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.ChangeOrderController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminManagePlantController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AdminManagePlantController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.AdminManagePlantController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdatePlantController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UpdatePlantController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UpdatePlantController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminManageCategoryController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AdminManageCategoryController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.AdminManageCategoryController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateCategoryController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UpdateCategoryController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UpdateCategoryController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserHomeController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.UserHomeController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.UserHomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SendEmailController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.SendEmailController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.SendEmailController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminInfoController</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AdminInfoController</servlet-class>
+        <servlet-class>com.khoahd7621.controller.sync.AdminInfoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminSearchOrderServlet</servlet-name>
-        <servlet-class>com.khoahd7621.controller.AdminSearchOrderServlet</servlet-class>
+        <servlet-name>AdminSearchOrderController</servlet-name>
+        <servlet-class>com.khoahd7621.controller.sync.AdminSearchOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartAsyncController</servlet-name>
+        <servlet-class>com.khoahd7621.controller.async.AddToCartAsyncController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -213,8 +217,8 @@
         <url-pattern>/UserViewOrderDetailController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SearchOrderServlet</servlet-name>
-        <url-pattern>/SearchOrderServlet</url-pattern>
+        <servlet-name>SearchOrderController</servlet-name>
+        <url-pattern>/SearchOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateUserController</servlet-name>
@@ -269,8 +273,12 @@
         <url-pattern>/AdminInfoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminSearchOrderServlet</servlet-name>
-        <url-pattern>/AdminSearchOrderServlet</url-pattern>
+        <servlet-name>AdminSearchOrderController</servlet-name>
+        <url-pattern>/AdminSearchOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartAsyncController</servlet-name>
+        <url-pattern>/AddToCartAsyncController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

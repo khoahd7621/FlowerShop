@@ -42,7 +42,7 @@
                             </c:when>
                         </c:choose>
                         <!-- Search order by date -->
-                        <form action="AdminSearchOrderServlet" class="mt-3 mb-3 row">
+                        <form action="AdminSearchOrderController" class="mt-3 mb-3 row">
                             <label class="fs-4">Search order</label>
                             <div class="form-group col-md-6">
                                 <label for="dp1">From: </label>

@@ -39,6 +39,8 @@
                 </span>
             </div>
         </div>
+        <!-- Toast MSG -->
+        <div id="toast"></div>
         <!-- Plant section-->
         <section>
             <div class="container px-4 px-lg-5 my-5">
@@ -54,10 +56,7 @@
                         </div>
                         <p class="lead default-cursor">${plant.description}</p>
                         <div class="d-flex">
-                            <c:url var="addLink" value="AddToCartController">
-                                <c:param name="pid" value="${plant.id}"></c:param>
-                            </c:url>
-                            <a href="${addLink}" class="btn btn-outline-dark flex-shrink-0">
+                            <a onclick="addToCartAsync(${plant.id})" class="btn btn-outline-dark flex-shrink-0">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </a>
@@ -131,9 +130,12 @@
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS -->
-        <script src="js/scripts.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/my-scripts.js"></script>
+        <!-- Axios Async -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="js/toast-alert.js"></script>
+        <script src="js/add-to-cart-async.js"></script>
     </body>
 
 </html>

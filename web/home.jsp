@@ -31,6 +31,8 @@
         <%@include file="components/navBarComponent.jsp" %>
         <!-- Banner 1 -->
         <%@include file="components/homeBanner1Component.jsp" %>
+        <!-- Toast MSG -->
+        <div id="toast"></div>
         <!-- Section Deal of the Day -->
         <section class="pt-5">
             <div class="pt-4 d-flex align-items-center justify-content-center fs-1 section-title">
@@ -89,10 +91,7 @@
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <div class="text-center">
-                                        <c:url var="addLink" value="AddToCartController">
-                                            <c:param name="pid" value="${LPS.id}"></c:param>
-                                        </c:url>
-                                        <a href="${addLink}" class="btn btn-outline-dark mt-auto w-50"><i
+                                        <a onclick="addToCartAsync(${LPS.id})" class="btn btn-outline-dark mt-auto w-50"><i
                                                 class="bi bi-cart-plus-fill"></i></a>
                                     </div>
                                 </div>
@@ -177,10 +176,7 @@
                                     <!-- Product actions-->
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <div class="text-center">
-                                            <c:url var="addLink" value="AddToCartController">
-                                                <c:param name="pid" value="${LBSP.id}"></c:param>
-                                            </c:url>
-                                            <a href="${addLink}" class="btn btn-outline-dark mt-auto w-50"><i
+                                            <a onclick="addToCartAsync(${LBSP.id})" class="btn btn-outline-dark mt-auto w-50"><i
                                                     class="bi bi-cart-plus-fill"></i></a>
                                         </div>
                                     </div>
@@ -205,9 +201,12 @@
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS -->
-        <script src="js/scripts.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/my-scripts.js"></script>
+        <!-- Axios Async -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="js/toast-alert.js"></script>
+        <script src="js/add-to-cart-async.js"></script>
     </body>
 
 </html>
