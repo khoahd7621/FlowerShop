@@ -6,6 +6,7 @@ import com.khoahd7621.model.Cart;
 import java.io.IOException;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,8 @@ public class CheckOutController extends HttpServlet {
             Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
             if (carts != null && !carts.isEmpty()) {
                 if (account == null) {
-                    response.sendRedirect("login.jsp");
+                    session.setAttribute("destPage", "checkOut");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 } else {
                     // Tinh tong tien
                     double totalMoney = 0;
@@ -80,6 +82,15 @@ public class CheckOutController extends HttpServlet {
                     boolean result = new OrderDAO().insertOrder(account.getAccId(), carts, name, phone, address, note);
                     if (result) {
                         session.removeAttribute("carts");
+                        
+                        // Clear cookie name "cart" from client
+                        Cookie[] cookies = request.getCookies();
+                        for (Cookie cooky : cookies) {
+                            if (cooky.getName().equals("cart")) {
+                                cooky.setMaxAge(0);
+                                response.addCookie(cooky);
+                            }
+                        }
                         request.setAttribute("MSG_SUCCESS", "Save your cart successfully!");
                         request.getRequestDispatcher("carts.jsp").forward(request, response);
                     } else {

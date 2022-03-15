@@ -67,15 +67,15 @@
                                         <div id="cartBoxBody">
                                             <c:forEach items="${sessionScope.carts}" var="C">
                                                 <div class="product row mt-2 w-100 m-0">
-                                                    <div class="col-3">
+                                                    <div class="col-2">
                                                         <img class="img-fluid border border-1"
                                                              src="${C.value.plant.imgPath}"
                                                              alt="Product Images">
                                                     </div>
-                                                    <div class="col-6 default-cursor">
+                                                    <div class="col-8 default-cursor">
                                                         ${C.value.plant.name}
                                                     </div>
-                                                    <div class="col-3 default-cursor text-danger">
+                                                    <div class="col-2 default-cursor text-danger">
                                                         $${C.value.plant.price}
                                                     </div>
                                                 </div>
@@ -121,7 +121,7 @@
                             </c:when>
                             <c:otherwise>
                                 <!-- Unlog in -->
-                                <form action="LoginController" method="POST" class="px-4 py-3">
+                                <form action="LoginController" method="POST" class="px-4 py-2">
                                     <div class="mb-3">
                                         <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
                                         <input name="email" type="email" class="form-control" id="exampleDropdownFormEmail1"
@@ -142,6 +142,13 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary">Sign in</button>
                                 </form>
+                                <!-- Login Google Button -->
+                                <div class="ms-4 mb-3">
+                                    Or quickly sign in by
+                                </div>
+                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8080/FlowerShop/LoginGoogleController&response_type=code
+                                   &client_id=1063985034301-03cecevenstd13h2o75brk09j5qj1u0i.apps.googleusercontent.com&approval_prompt=force"
+                                   class="btn btn-danger text-white ms-4"><i class="bi bi-google"></i> Google</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="RegistrationController">New around here? Sign up</a>
                                 <a class="dropdown-item" href="#">Forgot password?</a>

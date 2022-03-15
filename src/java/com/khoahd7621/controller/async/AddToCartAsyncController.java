@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +28,7 @@ public class AddToCartAsyncController extends HttpServlet {
         try {
             int pid = Integer.parseInt(request.getParameter("pid"));
 
-            // map <pid, cart(plant, quantity)>
+            // Map<pid, cart(plant, quantity)>
             HttpSession session = request.getSession();
             Map<Integer, Cart> carts = (Map<Integer, Cart>) session.getAttribute("carts");
             if (carts == null) {
@@ -44,14 +45,45 @@ public class AddToCartAsyncController extends HttpServlet {
                 Plant plant = new PlantDAO().getPlant(pid);
                 carts.put(pid, Cart.builder().plant(plant).quantity(1).build());
             }
-            // Lưu cart lên session
+            // Save carts to session scope
             session.setAttribute("carts", carts);
-            carts = (Map<Integer, Cart>) session.getAttribute("carts");
+
+            // Save cookie contain list cart to client
+            Cookie[] cookies = request.getCookies();
+            // Remove old cookie "cart" from client if it existed
+            Cookie cartCookie = null;
+            for (Cookie cooky : cookies) {
+                if (cooky.getName().equals("cart")) {
+                    cartCookie = cooky;
+                    cartCookie.setMaxAge(0);
+                    response.addCookie(cartCookie);
+                }
+                if (cartCookie != null) {
+                    break;
+                }
+            }
+            // Convert carts to string for save it to cookie
+            String cart = "";
+            for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
+                int plantId = entry.getKey();
+                Cart cartEl = entry.getValue();
+                if (cart.equals("")) {
+                    cart = Integer.toString(plantId) + ":" + Integer.toString(cartEl.getQuantity());
+                } else {
+                    cart += "-" + Integer.toString(plantId) + ":" + Integer.toString(cartEl.getQuantity());
+                }
+            }
+            Cookie cookieCart = new Cookie("cart", cart);
+            cookieCart.setMaxAge(60 * 60 * 24);
+            response.addCookie(cookieCart);
+
+            // Return json to browser to update UI cart btn
             List<Plant> list = new ArrayList<>();
             for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
                 Integer plantId = entry.getKey();
-                Cart cart = entry.getValue();
-                list.add(cart.getPlant());
+                Cart cartsss = entry.getValue();
+
+                list.add(cartsss.getPlant());
             }
             Gson gson = new Gson();
             String json = gson.toJson(list);

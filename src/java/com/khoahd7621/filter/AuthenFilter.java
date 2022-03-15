@@ -65,6 +65,7 @@ public class AuthenFilter implements Filter {
         USER_LIST.add("user.jsp");
         USER_LIST.add("about.jsp");
         USER_LIST.add("order.jsp");
+        USER_LIST.add("checkout.jsp");
         USER_LIST.add("orderDetail.jsp");
         USER_LIST.add("plantDetail.jsp");
         USER_LIST.add("product.jsp");
@@ -200,10 +201,12 @@ public class AuthenFilter implements Filter {
                         || uri.contains("UpdateCartQuantityController")
                         || uri.contains("login.jsp")
                         || uri.contains("about.jsp")
+                        || uri.contains("registration.jsp")
                         || uri.contains("HomeController")
                         || uri.contains("ViewAllController")
                         || uri.contains("SendEmailController")
-                        || uri.contains("AddToCartAsyncController")) {
+                        || uri.contains("AddToCartAsyncController")
+                        || uri.contains("LoginGoogleController")) {
                     chain.doFilter(request, response);
                 } else {
                     res.sendRedirect(HOME);

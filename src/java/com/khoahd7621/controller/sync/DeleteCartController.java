@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +30,52 @@ public class DeleteCartController extends HttpServlet {
             if (carts.containsKey(pid)) {
                 carts.remove(pid);
             }
-            session.setAttribute("carts", carts);
+            if (carts.size() > 0) {
+                session.setAttribute("carts", carts);
+                // Save cookie contain list cart to client
+                Cookie[] cookies = request.getCookies();
+                // Remove old cookie "cart" from client if it existed
+                Cookie cartCookie = null;
+                for (Cookie cooky : cookies) {
+                    if (cooky.getName().equals("cart")) {
+                        cartCookie = cooky;
+                        cartCookie.setMaxAge(0);
+                        response.addCookie(cartCookie);
+                    }
+                    if (cartCookie != null) {
+                        break;
+                    }
+                }
+                // Convert carts to string for save it to cookie
+                String cart = "";
+                for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
+                    int plantId = entry.getKey();
+                    Cart cartEl = entry.getValue();
+                    if (cart.equals("")) {
+                        cart = Integer.toString(plantId) + ":" + Integer.toString(cartEl.getQuantity());
+                    } else {
+                        cart += "-" + Integer.toString(plantId) + ":" + Integer.toString(cartEl.getQuantity());
+                    }
+                }
+                Cookie cookieCart = new Cookie("cart", cart);
+                cookieCart.setMaxAge(60 * 60 * 24);
+                response.addCookie(cookieCart);
+            } else {
+                session.removeAttribute("carts");
+                Cookie[] cookies = request.getCookies();
+                // Remove old cookie "cart" from client if it existed
+                Cookie cartCookie = null;
+                for (Cookie cooky : cookies) {
+                    if (cooky.getName().equals("cart")) {
+                        cartCookie = cooky;
+                        cartCookie.setMaxAge(0);
+                        response.addCookie(cartCookie);
+                    }
+                    if (cartCookie != null) {
+                        break;
+                    }
+                }
+            }
         } catch (Exception e) {
             log("Error at DeleteCartController: " + e.toString());
         } finally {

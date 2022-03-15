@@ -61,6 +61,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:set var="total" scope="request" value="${0}"/>
                                     <c:forEach items="${carts}" var="C">
                                     <tr>
                                     <td>
@@ -78,11 +79,12 @@
                                     <td>$${C.value.plant.price}</td>
                                     <td>${C.value.quantity}</td>
                                     <td>$${C.value.plant.price * C.value.quantity}</td>
+                                    <c:set var="total" scope="request" value="${total + C.value.plant.price * C.value.quantity}"/>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <h3 class="default-cursor">Total Amount: $${totalMoney}</h3>
+                            <h3 class="default-cursor">Total Amount: $${not empty totalMoney ? totalMoney : total}</h3>
                         </div>
                     </div>
                     <div class="col-lg-4 rounded shadow p-3 bg-body">

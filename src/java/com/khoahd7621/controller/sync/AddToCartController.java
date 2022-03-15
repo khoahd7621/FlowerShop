@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,21 +44,35 @@ public class AddToCartController extends HttpServlet {
             }
             // Lưu cart lên session
             session.setAttribute("carts", carts);
-            
-            // Get history URL
-            StringBuffer requestURL = request.getRequestURL();
-            if (request.getQueryString() != null) {
-                requestURL.append("?").append(request.getQueryString());
+
+            // Save cookie contain list cart to client
+            Cookie[] cookies = request.getCookies();
+            // Remove old cookie "cart" from client if it existed
+            Cookie cartCookie = null;
+            for (Cookie cooky : cookies) {
+                if (cooky.getName().equals("cart")) {
+                    cartCookie = cooky;
+                    cartCookie.setMaxAge(0);
+                    response.addCookie(cartCookie);
+                }
+                if (cartCookie != null) {
+                    break;
+                }
             }
-            String completeURL = requestURL.toString();
-            int lastIndex = completeURL.lastIndexOf("/");
-            String resource = completeURL.substring(lastIndex + 1);
-            System.out.println(resource);
-            String urlHistory = (String) session.getAttribute("urlHistory");
-            if (urlHistory == null) {
-                urlHistory = "HomeController";
+            // Convert carts to string for save it to cookie
+            String cart = "";
+            for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
+                int plantId = entry.getKey();
+                Cart cartEl = entry.getValue();
+                if (cart.equals("")) {
+                    cart = Integer.toString(plantId) + ":" + Integer.toString(cartEl.getQuantity());
+                } else {
+                    cart += "-" + Integer.toString(plantId) + ":" + Integer.toString(cartEl.getQuantity());
+                }
             }
-            response.sendRedirect(urlHistory);
+            Cookie cookieCart = new Cookie("cart", cart);
+            cookieCart.setMaxAge(60 * 60 * 24);
+            response.addCookie(cookieCart);
         } catch (Exception e) {
             log("Error at AddToCartController: " + e.toString());
         }

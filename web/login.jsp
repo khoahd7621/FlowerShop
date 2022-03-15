@@ -84,7 +84,14 @@
                                             <p class="mb-3 pb-lg-2" style="color: #393f81;">
                                                 Don't have an account?
                                                 <c:url var="regisLink" value="RegistrationController"></c:url>
-                                                <a href="${regisLink}" style="color: #393f81;">Register here</a></p>
+                                                <a href="${regisLink}" style="color: #393f81;">Register here</a>
+                                            </p>
+                                            <p class="mb-3 pb-lg-2" style="color: #393f81;">
+                                                Or quickly sign in by
+                                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8080/FlowerShop/LoginGoogleController&response_type=code
+                                                   &client_id=1063985034301-03cecevenstd13h2o75brk09j5qj1u0i.apps.googleusercontent.com&approval_prompt=force"
+                                                   class="btn btn-danger text-white"><i class="bi bi-google"></i> Google</a>
+                                            </p>
                                             <a href="#!" class="small text-muted">Terms of use.</a>
                                             <a href="#!" class="small text-muted">Privacy policy</a>
                                         </form>

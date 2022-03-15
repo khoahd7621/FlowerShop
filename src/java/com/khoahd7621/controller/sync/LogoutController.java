@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  * @author KhoaHD7621
  */
 public class LogoutController extends HttpServlet {
-    
+
     private static final String ERROR = "HomeController";
     private static final String SUCCESS = "HomeController";
 
@@ -31,6 +31,10 @@ public class LogoutController extends HttpServlet {
             if (cookies.length != 0) {
                 for (Cookie cooky : cookies) {
                     if (cooky.getName().equals("selector")) {
+                        cooky.setMaxAge(0);
+                        response.addCookie(cooky);
+                    }
+                    if (cooky.getName().equals("cart")) {
                         cooky.setMaxAge(0);
                         response.addCookie(cooky);
                     }

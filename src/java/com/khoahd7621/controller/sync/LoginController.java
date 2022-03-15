@@ -1,10 +1,15 @@
 package com.khoahd7621.controller.sync;
 
 import com.khoahd7621.dao.AccountDAO;
+import com.khoahd7621.dao.PlantDAO;
 import com.khoahd7621.model.Account;
+import com.khoahd7621.model.Cart;
+import com.khoahd7621.model.Plant;
 import com.khoahd7621.util.SecurityUtils;
 import com.khoahd7621.util.Tools;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -43,10 +48,36 @@ public class LoginController extends HttpServlet {
             }
             if (!token.equals("")) {
                 if (dao.validToken(token)) {
-                    int role = dao.getRoleAccountByToken(token);
                     Account account = dao.getAccount(token);
+                    int role = account.getRole();
                     session.setAttribute("LOGIN_USER", account);
                     if (role == 0) {
+                        // Load cart in Cookie of this user to server if exists
+                        String cartStr = "";
+                        if (c != null) {
+                            for (Cookie Cooky : c) {
+                                if (Cooky.getName().equals("cart")) {
+                                    cartStr += Cooky.getValue();
+                                }
+                            }
+                        }
+                        PlantDAO plantDAO = new PlantDAO();
+                        Map<Integer, Cart> carts = new LinkedHashMap<>();
+                        // If you get the cart string from the cookie,
+                        // convert this string to a cart and save it to the session
+                        if (!cartStr.equals("")) {
+                            // Format cart in cookie: pId1:quantity1-pId2:quantity2-pId3:quantity3-...
+                            String[] s = cartStr.split("-");
+                            for (String i : s) {
+                                // Format each element: pId:quantity
+                                String[] n = i.split(":");
+                                int pid = Integer.parseInt(n[0]);
+                                int quantity = Integer.parseInt(n[1]);
+                                Plant plant = plantDAO.getPlant(pid);
+                                carts.put(pid, new Cart(plant, quantity));
+                            }
+                            session.setAttribute("carts", carts);
+                        }
                         session.setAttribute("destPage", "home");
                         url = HOME;
                     } else if (role == 1) {
@@ -78,11 +109,23 @@ public class LoginController extends HttpServlet {
                                 session.setAttribute("destPage", "admin");
                                 url = ADMIN_PAGE;
                             } else if (USER == account.getRole()) {
-                                session.setAttribute("destPage", "user");
-                                url = USER_PAGE;
+
+                                // If user from Checkout page to here to checkout 
+                                // => send response back to CheckoutController to show response.jsp
+                                String destPage = (String) session.getAttribute("destPage");
+                                if (destPage != null && destPage.equals("checkOut")) {
+                                    response.sendRedirect("CheckOutController");
+                                    return;
+                                } else {
+                                    // Else set url to User page
+                                    session.setAttribute("destPage", "user");
+                                    url = USER_PAGE;
+                                }
                             } else {
                                 request.setAttribute("ERROR_MASSEGE", "Your role is not support!");
                             }
+
+                            // Create and save token to cookies if user click "remember me"
                             if (remember != null) {
                                 token = Tools.generateNewToken();
                                 dao.updateToken(token, email);

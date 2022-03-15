@@ -18,13 +18,13 @@ function addToCartAsync(pid) {
         let plants = response.data;
         for (let i = 0; i < plants.length; i++) {
             cartBoxBody.innerHTML += `<div class="product row mt-2 w-100 m-0">
-                                        <div class="col-3">
+                                        <div class="col-2">
                                             <img class="img-fluid border border-1" src="${plants[i]['imgPath']}" alt="Product Images">
                                         </div>
-                                        <div class="col-6 default-cursor">
+                                        <div class="col-8 default-cursor">
                                             ${plants[i]['name']}
                                         </div>
-                                        <div class="col-3 default-cursor text-danger">
+                                        <div class="col-2 default-cursor text-danger">
                                             $${plants[i]['price']}
                                         </div>
                                     </div>`;

@@ -148,6 +148,10 @@
         <servlet-name>AddToCartAsyncController</servlet-name>
         <servlet-class>com.khoahd7621.controller.async.AddToCartAsyncController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleController</servlet-name>
+        <servlet-class>com.khoahd7621.controller.sync.LoginGoogleController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -279,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>AddToCartAsyncController</servlet-name>
         <url-pattern>/AddToCartAsyncController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleController</servlet-name>
+        <url-pattern>/LoginGoogleController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
