@@ -106,9 +106,13 @@
                             </c:forEach>
                             </tbody>
                         </table>
-                        <h3>Total Amount: $${totalMoney}</h3>
-                        <c:url var="checkOut" value="CheckOutController"></c:url>
-                        <a class="btn btn-outline-success" href="${checkOut}">Check out</a>
+                        <div class="row">
+                            <h3 class="col-6">Total Amount: $${totalMoney}</h3>
+                            <div class="col-6 text-end">
+                                <c:url var="checkOut" value="CheckOutController"></c:url>
+                                <a class="btn btn-success text-white btn-lg" href="${checkOut}">Check out</a>
+                            </div>
+                        </div>
                     </c:otherwise>
                 </c:choose>
                 <c:if test="${not empty requestScope.MSG_SUCCESS}">
@@ -133,8 +137,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS -->
         <script src="js/scripts.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/my-scripts.js"></script>
     </body>
 
 </html>

@@ -89,7 +89,7 @@
                                         <c:url var="linkImg" value="PlantDetailController">
                                             <c:param name="pid" value="${L.id}"></c:param>
                                         </c:url>
-                                        <a href="${linkImg}"><img class="card-img-top"
+                                        <a href="${linkImg}"><img class="card-img-top img-h-350"
                                                                   src="${L.imgPath}"
                                                                   alt="..." /></a>
                                         <!-- Product details-->
@@ -165,9 +165,6 @@
         <%@include file="components/footerComponent.jsp" %>
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/my-scripts.js"></script>
         <!-- Axios Async -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="js/toast-alert.js"></script>

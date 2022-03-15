@@ -39,5 +39,3 @@ function addToCartAsync(pid) {
 
     })
 }
-
-

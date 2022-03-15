@@ -55,9 +55,6 @@ public class AddToCartAsyncController extends HttpServlet {
             }
             Gson gson = new Gson();
             String json = gson.toJson(list);
-            System.out.println(json.toString());
-            //request.getRequestDispatcher("cartComponent.jsp").include(request, response);
-//            response.sendRedirect("cartComponent.jsp");
             response.getWriter().println(json);
         } catch (Exception e) {
             log("Error at AddToCartAsyncController: " + e.toString());

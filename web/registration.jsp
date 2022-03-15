@@ -178,7 +178,6 @@
         <script src="js/scripts.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/register.js"></script>
-        <script src="js/my-scripts.js"></script>
     </body>
 
 </html>

@@ -86,6 +86,7 @@ public class AuthenFilter implements Filter {
         USER_LIST.add("AboutUsController");
         USER_LIST.add("LoadMoreController");
         USER_LIST.add("AddToCartAsyncController");
+        USER_LIST.add("PlantDetailController");
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)

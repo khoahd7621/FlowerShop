@@ -3,6 +3,7 @@ package com.khoahd7621.controller.sync;
 import com.khoahd7621.dao.PlantDAO;
 import com.khoahd7621.model.Plant;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,10 @@ public class PlantDetailController extends HttpServlet {
             int pid = Integer.parseInt(request.getParameter("pid"));
             HttpSession session = request.getSession();
             Plant plant = new PlantDAO().getPlant(pid);
-            session.setAttribute("plant", plant);
-            session.setAttribute("urlHistory", "PlantDetailController?pid=" + pid);
+            int cateId = plant.getCategoryId();
+            List<Plant> listRelativePlants = new PlantDAO().getListTopPlantsRandom(4, cateId);
+            request.setAttribute("plant", plant);
+            request.setAttribute("listRelativePlants", listRelativePlants);
         } catch (Exception e) {
             log("Error at PlantDetailController: " + e.toString());
         } finally {

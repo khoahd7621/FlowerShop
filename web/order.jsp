@@ -216,8 +216,6 @@
         <%@include file="components/footerComponent.jsp" %>
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS -->
-        <script src="js/my-scripts.js"></script>
         <script>
             let checkin = $('#dp1').datepicker({
                 autoclose: true

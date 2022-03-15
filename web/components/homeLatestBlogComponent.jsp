@@ -6,8 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<section class="pt-1 pb-4 latest-blog">
-    <div class="d-flex align-items-center default-cursor justify-content-center fs-1 section-title">
+<section class="pt-1 pb-4 latest-blog" style="background-color: #f3f3f3;">
+    <div class="d-flex align-items-center default-cursor justify-content-center fs-1 section-title pt-4">
         <hr class="d-inline-block me-3" width="20%" />
         Latest Blog
         <hr class="d-inline-block ms-3" width="20%" />

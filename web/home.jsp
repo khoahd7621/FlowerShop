@@ -55,9 +55,9 @@
                                 <c:url var="linkImg" value="PlantDetailController">
                                     <c:param name="pid" value="${LPS.id}"></c:param>
                                 </c:url>
-                                <a href="${linkImg}"><img class="card-img-top"
+                                <a href="${linkImg}"><img class="card-img-top img-h-350"
                                                           src="${LPS.imgPath}"
-                                                          alt="..." /></a>
+                                                          alt="" /></a>
                                 <!-- Product details-->
                                 <div class="card-body p-2">
                                     <div class="text-center product-info">
@@ -140,7 +140,7 @@
                                     <c:url var="linkImg" value="PlantDetailController">
                                         <c:param name="pid" value="${LBSP.id}"></c:param>
                                     </c:url>
-                                    <a href="${linkImg}"><img class="card-img-top"
+                                    <a href="${linkImg}"><img class="card-img-top img-h-350"
                                                               src="${LBSP.imgPath}"
                                                               alt="..." /></a>
                                     <!-- Product details-->
@@ -196,17 +196,26 @@
         <%@include file="components/shopByCategoryComponents.jsp" %>
         <!-- Latest Blog -->
         <%@include file="components/homeLatestBlogComponent.jsp" %>
+        <c:if test="${empty sessionScope.LOGIN_USER}">
+            <!-- Subscribe News Letter -->
+            <%@include file="components/subscribeNewsLetterComponent.jsp" %>
+        </c:if>
         <!-- Footer -->
         <%@include file="components/footerComponent.jsp" %>
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS -->
+        <!-- Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/my-scripts.js"></script>
+        <!-- Toast Alert script -->
+        <script src="js/toast-alert.js"></script>
         <!-- Axios Async -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="js/toast-alert.js"></script>
+        <!-- Add-to-cart async script -->
         <script src="js/add-to-cart-async.js"></script>
+        <!-- Load-more script -->
+        <script src="js/load-more.js"></script>
+        <!-- Subscribe News Letter script -->
+        <script src="js/subscribe-newsletter.js"></script>
     </body>
 
 </html>

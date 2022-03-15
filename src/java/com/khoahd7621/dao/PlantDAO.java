@@ -36,7 +36,48 @@ public class PlantDAO {
     private static final String UPDATE_PLANT_INFO = "UPDATE Plants SET pName = ? , price = ? , imgPath = ?\n"
             + "      , description = ?, status = ?, cateId = ? WHERE pId = ?";
     private static final String INSERT_NEW_PLANT = "INSERT INTO Plants (pName, price, imgPath, description, status, cateId) VALUES (?, ?, ?, ?, ?, ?)";
-
+    private static final String GET_LIST_TOP_PLANTS_RANDOM = "SELECT TOP(?) * FROM Plants WHERE cateId = ? ORDER BY NEWID()";
+    
+    public List<Plant> getListTopPlantsRandom(int top, int cateId) throws SQLException {
+        List<Plant> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                psm = conn.prepareStatement(GET_LIST_TOP_PLANTS_RANDOM);
+                psm.setInt(1, top);
+                psm.setInt(2, cateId);
+                rs = psm.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("pId");
+                        String fullName = rs.getString("pName");
+                        int price = rs.getInt("price");
+                        String imgPath = rs.getString("imgPath");
+                        String description = rs.getString("description");
+                        int status = rs.getInt("status");
+                        Plant plant = new Plant(id, fullName, price, imgPath, description, status, cateId);
+                        list.add(plant);
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+    
     public boolean insertNewPlant(String name, String imgPath, int price, String description, int status, int cateId) throws SQLException {
         boolean check = false;
         Connection conn = null;

@@ -27,7 +27,7 @@ public class CartController extends HttpServlet {
             }
 
             // Tinh tong tien
-            double totalMoney = 0;
+            int totalMoney = 0;
             for (Map.Entry<Integer, Cart> entry : carts.entrySet()) {
                 Integer pid = entry.getKey();
                 Cart cart = entry.getValue();

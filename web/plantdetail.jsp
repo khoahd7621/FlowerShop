@@ -74,54 +74,62 @@
             <div class="container px-4 px-lg-5">
                 <h2 class="fw-bolder mb-4">Related products</h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <!-- Product -->
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="position-absolute bg-black text-white default-cursor"
-                                 style="padding: 5px 15px; left: 15px; top: 15px;">
-                                Available
-                            </div>
-                            <!-- Product image-->
-                            <a href="#"><img class="card-img-top"
-                                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Bachelor%27s_button%2C_Basket_flower%2C_Boutonniere_flower%2C_Cornflower_-_3.jpg/1200px-Bachelor%27s_button%2C_Basket_flower%2C_Boutonniere_flower%2C_Cornflower_-_3.jpg"
-                                             alt="..." /></a>
-                            <!-- Product details-->
-                            <div class="card-body p-2">
-                                <div class="text-center product-info">
-                                    <div class="category ms-3 mt-3 text-start">
-                                        Orchis
-                                    </div>
-                                    <!-- Product name-->
-                                    <div class="name">
-                                        <a href="#" class="text-decoration-none text-black">
-                                            Kamehameha
-                                        </a>
-                                    </div>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <div class="price text-center fs-4 fw-bold default-cursor">
-                                        <span class="text-muted text-decoration-line-through">$20</span>
-                                        $50
+                    <c:forEach items="${requestScope.listRelativePlants}" var="RL">
+                        <!-- Product -->
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Sale badge-->
+                                <div class="position-absolute bg-black text-white default-cursor"
+                                     style="padding: 5px 15px; left: 15px; top: 15px;">
+                                    ${RL.status == 1 ? "Available" : "Unavailable"}
+                                </div>
+                                <!-- Product image-->
+                                <c:url var="linkImg" value="PlantDetailController">
+                                    <c:param name="pid" value="${RL.id}"></c:param>
+                                </c:url>
+                                <a href="${linkImg}"><img class="card-img-top img-h-350"
+                                                 src="${RL.imgPath}"
+                                                 alt="..." /></a>
+                                <!-- Product details-->
+                                <div class="card-body p-2">
+                                    <div class="text-center product-info">
+                                        <div class="category ms-3 mt-3 text-start">
+                                            ${sessionScope.listCategories.get(RL.categoryId)}
+                                        </div>
+                                        <!-- Product name-->
+                                        <div class="name">
+                                            <c:url var="linkName" value="PlantDetailController">
+                                                <c:param name="pid" value="${RL.id}"></c:param>
+                                            </c:url>
+                                            <a href="${linkName}" class="text-decoration-none text-black">
+                                                ${RL.name}
+                                            </a>
+                                        </div>
+                                        <!-- Product reviews-->
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        <!-- Product price-->
+                                        <div class="price text-center fs-4 fw-bold default-cursor">
+                                            <span class="text-muted text-decoration-line-through">$20</span>
+                                            $${RL.price}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <a class="btn btn-outline-dark mt-auto w-50" href="#"><i
-                                            class="bi bi-cart-plus-fill"></i></a>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                        <a onclick="addToCartAsync(${RL.id})" class="btn btn-outline-dark mt-auto w-50"><i
+                                                class="bi bi-cart-plus-fill"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </section>
@@ -129,9 +137,6 @@
         <%@include file="components/footerComponent.jsp" %>
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/my-scripts.js"></script>
         <!-- Axios Async -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="js/toast-alert.js"></script>

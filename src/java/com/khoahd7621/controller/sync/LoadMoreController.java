@@ -1,5 +1,6 @@
 package com.khoahd7621.controller.sync;
 
+import com.google.gson.Gson;
 import com.khoahd7621.dao.PlantDAO;
 import com.khoahd7621.model.Plant;
 import java.io.IOException;
@@ -27,116 +28,24 @@ public class LoadMoreController extends HttpServlet {
             PrintWriter out = response.getWriter();
             String action = request.getParameter("action");
             List<Plant> list;
+            Object[] listObj;
+            String json;
+            Gson gson = new Gson();
             if (action != null) {
                 switch (action) {
                     case "loadMoreOurProduct":
                         int amount = Integer.parseInt(request.getParameter("exists"));
                         list = new PlantDAO().getNext4Plants(amount);
-                        for (Plant p : list) {
-                            String status = p.getStatus() == 1 ? "Available" : "Sold out";
-                            out.println("<!-- Product -->\n" +
-"                        <div class=\"col mb-5 product-all\">\n" +
-"                            <div class=\"card h-100\">\n" +
-"                                <!-- Sale badge-->\n" +
-"                                <div class=\"position-absolute bg-black text-white default-cursor\"\n" +
-"                                     style=\"padding: 5px 15px; left: 15px; top: 15px;\">\n" +
-"                                    " + status + "\n" +
-"                                </div>\n" +
-"                                <!-- Product image-->\n" +
-"                                <a href=\"PlantDetailController?pid=" + p.getId() + "\"><img class=\"card-img-top\"\n" +
-"                                                 src=\"" + p.getImgPath() + "\"\n" +
-"                                                 alt=\"...\" /></a>\n" +
-"                                <!-- Product details-->\n" +
-"                                <div class=\"card-body p-2\">\n" +
-"                                    <div class=\"text-center product-info\">\n" +
-"                                        <div class=\"category ms-3 mt-3 text-start\">\n" +
-"                                            " + listCategories.get(p.getCategoryId()) + "\n" +
-"                                        </div>\n" +
-"                                        <!-- Product name-->\n" +
-"                                        <div class=\"name\">\n" +
-"                                            <a class=\"text-decoration-none text-black\" href=\"PlantDetailController?pid=" + p.getId() + "\">\n" +
-"                                                " + p.getName() + "\n" +
-"                                            </a>\n" +
-"                                        </div>\n" +
-"                                        <!-- Product reviews-->\n" +
-"                                        <div class=\"d-flex justify-content-center small text-warning mb-2\">\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                        </div>\n" +
-"                                        <!-- Product price-->\n" +
-"                                        <div class=\"price text-center fs-4 fw-bold default-cursor\">\n" +
-"                                            <span class=\"text-muted text-decoration-line-through\">$20</span>\n" +
-"                                            $" + p.getPrice() + "\n" +
-"                                        </div>\n" +
-"                                    </div>\n" +
-"                                </div>\n" +
-"                                <!-- Product actions-->\n" +
-"                                <div class=\"card-footer p-4 pt-0 border-top-0 bg-transparent\">\n" +
-"                                    <div class=\"text-center\">\n" +
-"                                        <a onclick=\"addToCartAsync(" + p.getId() + ")\" class=\"btn btn-outline-dark mt-auto w-50\"><i\n" +
-"                                                class=\"bi bi-cart-plus-fill\"></i></a>" +
-"                                    </div>\n" +
-"                                </div>\n" +
-"                            </div>\n" +
-"                        </div>");
-                        }
+                        listObj = new Object[]{listCategories, list};
+                        json = gson.toJson(listObj);
+                        response.getWriter().println(json);
                         break;
                     case "loadProductsById":
                         int cateId = Integer.parseInt(request.getParameter("cateId"));
                         list = new PlantDAO().getTop4PlantsByCateId(cateId);
-                        for (Plant pl : list) {
-                            String status = pl.getStatus() == 1 ? "Available" : "Sold out";
-                            out.println("<div class=\"col mb-5 product-all\">\n" +
-"                            <div class=\"card h-100\">\n" +
-"                                <!-- Sale badge-->\n" +
-"                                <div class=\"position-absolute bg-black text-white default-cursor\"\n" +
-"                                     style=\"padding: 5px 15px; left: 15px; top: 15px;\">\n" +
-"                                    " + status + "\n" +
-"                                </div>\n" +
-"                                <!-- Product image-->\n" +
-"                                <a href=\"PlantDetailController?pid=" + pl.getId() + "\"><img class=\"card-img-top\"\n" +
-"                                                 src=\"" + pl.getImgPath() + "\"\n" +
-"                                                 alt=\"...\" /></a>\n" +
-"                                <!-- Product details-->\n" +
-"                                <div class=\"card-body p-2\">\n" +
-"                                    <div class=\"text-center product-info\">\n" +
-"                                        <div class=\"category ms-3 mt-3 text-start\">\n" +
-"                                            " + listCategories.get(pl.getCategoryId()) + "\n" +
-"                                        </div>\n" +
-"                                        <!-- Product name-->\n" +
-"                                        <div class=\"name\">\n" +
-"                                            <a class=\"text-decoration-none text-black\" href=\"PlantDetailController?pid=" + pl.getId() + "\">\n" +
-"                                                " + pl.getName() + "\n" +
-"                                            </a>\n" +
-"                                        </div>\n" +
-"                                        <!-- Product reviews-->\n" +
-"                                        <div class=\"d-flex justify-content-center small text-warning mb-2\">\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                            <div class=\"bi-star-fill\"></div>\n" +
-"                                        </div>\n" +
-"                                        <!-- Product price-->\n" +
-"                                        <div class=\"price text-center fs-4 fw-bold default-cursor\">\n" +
-"                                            <span class=\"text-muted text-decoration-line-through\">$20</span>\n" +
-"                                            $" + pl.getPrice() +"\n" +
-"                                        </div>\n" +
-"                                    </div>\n" +
-"                                </div>\n" +
-"                                <!-- Product actions-->\n" +
-"                                <div class=\"card-footer p-4 pt-0 border-top-0 bg-transparent\">\n" +
-"                                    <div class=\"text-center\">\n" +
-"                                        <a onclick=\"addToCartAsync(" + pl.getId() + ")\" class=\"btn btn-outline-dark mt-auto w-50\"><i\n" +
-"                                                class=\"bi bi-cart-plus-fill\"></i></a>" +
-"                                    </div>\n" +
-"                                </div>\n" +
-"                            </div>\n" +
-"                        </div>");
-                        }
+                        listObj = new Object[]{listCategories, list};
+                        json = gson.toJson(listObj);
+                        response.getWriter().println(json);
                         break;
                 }
             }
