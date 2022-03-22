@@ -4,6 +4,18 @@ The main project folder that for learning, practicing and taking assignment scor
 
 Live Demo: :point_right: [here]()
 
+## You will find in this repo the following stuff:
+* The Java web source used to develop flower e-commerce shopping
+* Login by gmail
+* Send mail after checkout cart, subscribe news letters, ...
+* Authorizing client, user, admin by filter
+* Custom tag for showing all products in cart
+* Add to cart don't reload page by using ajax (axios)
+* Design pattern MVC2 Modal
+* Paging or load more products by using ajax
+* .gitignore file and README.md file to manage the content of this repo
+* ...
+
 ## Table of Contents
 
 - [Description](#description)
@@ -57,6 +69,8 @@ Live Demo: :point_right: [here]()
 - JSP - JavaServer Pages
 - JSTL - JSP Standard Tag Library
 - axios - Promise based HTTP client for the browser and node.js
+- wow js plugin for animation
+- ...
 
 **2. Backend**
 
