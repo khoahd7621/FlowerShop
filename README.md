@@ -136,21 +136,13 @@ Live Demo: :point_right: [here]()
 ## Useful Resources
 
 #| Name | Description
-
 -| ---- | -----------
-
 1| [web Folder](https://github.com/khoahd7621/FlowerShop/tree/main/web) | -----------
-
 2| [src Folder](https://github.com/khoahd7621/FlowerShop/tree/main/src) | -----------
-
 3| [Database File](https://github.com/khoahd7621/FlowerShop/blob/main/Database-Plant-Shop.sql) | -----------
-
 4| [META-INF Folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/META-INF) | -----------
-
 5| [WEB-INF Folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/WEB-INF) | -----------
-
 6| [libs Folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/WEB-INF/libs) | -----------
-  
 
 ## Learn More
 
