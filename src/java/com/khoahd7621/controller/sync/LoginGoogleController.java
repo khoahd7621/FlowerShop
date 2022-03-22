@@ -43,10 +43,9 @@ public class LoginGoogleController extends HttpServlet {
             if (check) {
                 Account account = accDAO.getAccountInfoByEmail(email);
                 session.setAttribute("LOGIN_USER", account);
-
             } else {
-                Account account = new Account(0, email, "", user.getName(), 1, "", 0);
                 accDAO.insertAccount(email, "******", user.getName(), "", 1, 0);
+                Account account = accDAO.getAccountInfoByEmail(email);
                 session.setAttribute("LOGIN_USER", account);
             }
 

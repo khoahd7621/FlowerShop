@@ -17,11 +17,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "home" ? "active" : ""}" aria-current="page" href="HomeController">Home</a></li>
-                <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "about" ? "active" : ""}" href="AboutUsController">About</a></li>
-                    <c:if test="${not empty sessionScope.LOGIN_USER && sessionScope.LOGIN_USER.role eq 0}">
-                    <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "user" ? "active" : ""}" href="UserHomeController">Personal Page</a></li>
-                    <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "order" ? "active" : ""}" href="UserViewOrderController">Orders</a></li>
-                    </c:if>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle ${sessionScope.destPage eq "plant" ? "active" : ""}" id="navbarDropdown" href="#" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
@@ -34,9 +29,15 @@
                         <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "blog" ? "active" : ""}" href="blog">Blog</a></li>
+                <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "about" ? "active" : ""}" href="AboutUsController">About</a></li>
+                    <c:if test="${not empty sessionScope.LOGIN_USER && sessionScope.LOGIN_USER.role eq 0}">
+                    <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "user" ? "active" : ""}" href="UserHomeController">Personal Page</a></li>
+                    <li class="nav-item"><a class="nav-link ${sessionScope.destPage eq "order" ? "active" : ""}" href="UserViewOrderController">Orders</a></li>
+                    </c:if>
             </ul>
             <!-- Search -->
-            <form action="SearchController" class="d-flex mx-auto my-2">
+            <form id="search-form" action="SearchController" class="d-flex mx-auto my-2">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="${requestScope.keyword}" required>
                 <select class="form-select me-2 w-50" aria-label="Default select example" name="searchby">
                     <option value="byname" ${requestScope.searchby eq "byname" ? "selected" : ""}>Name</option>
@@ -45,6 +46,22 @@
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
             <div class="btn-box d-flex">
+                <!-- Search Button -->
+                <div id="search-btn" class="dropdown-hover position-relative">
+                    <div class="btn btn-outline-success me-2">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <div class="dropdown-menu" style="width: 250px; margin-right: 6px;">
+                        <form action="SearchController" class="p-3">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="keyword" value="${requestScope.keyword}" required>
+                            <select class="form-select mt-2" aria-label="Default select example" name="searchby">
+                                <option value="byname" ${requestScope.searchby eq "byname" ? "selected" : ""}>Name</option>
+                                <option value="bycategory" ${requestScope.searchby eq "bycategory" ? "selected" : ""}>Category</option>
+                            </select>
+                            <button class="btn btn-primary mt-2 w-100" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
                 <!-- Cart Button -->
                 <div class="cart-btn dropdown-hover position-relative">
                     <c:url var="viewCartLink" value="CartController"></c:url>
@@ -52,7 +69,7 @@
                         <i class="bi-cart-fill me-1"></i>
                         <span id="cartNum" class="badge bg-danger text-white ms-1 rounded-pill">${(sessionScope.carts == null) || (sessionScope.carts.size() == 0) ? "0" : sessionScope.carts.size()}</span>
                     </a>
-                    <div class="dropdown-menu" style="width: 350px; margin-right: 6px;">
+                    <div class="dropdown-menu" style="width: 350px; margin-right: 6px; z-index: 99;">
                         <div id="cartBox" class="cart-box">
                             <c:choose>
                                 <c:when test="${(sessionScope.carts == null) || (sessionScope.carts.size() == 0)}">

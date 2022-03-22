@@ -22,13 +22,24 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
-    <body>
-        <!-- Contact Head -->
-        <%@include file="components/contactHeadComponent.jsp" %>
-        <!-- Navigation -->
-        <%@include file="components/navBarComponent.jsp" %>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/headerComponent.jsp" %>
         <!-- Sub-nav Order page -->
         <div id="search-nav" class="d-flex align-items-center">
             <div class="container text-center">
@@ -43,7 +54,7 @@
         <div class="container mb-5">
             <h1 class="pb-3 default-cursor">Welcome, <span class="text-warning">${sessionScope.LOGIN_USER.fullName}</span>!</h1>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <div class="list-group">
                         <a type="button" class="list-group-item list-group-item-action" href="UserViewOrderController">All orders</a>
                         <c:forEach items="${sessionScope.listOrderStatus}" var="L">
@@ -54,7 +65,7 @@
                         </c:forEach>
                     </div>
                 </div>
-                <div id="order-detail-body" class="col-md-9 default-cursor position-relative mt-4 mt-md-0">
+                <div id="order-detail-body" class="col-lg-9 default-cursor position-relative mt-4 mt-lg-0">
                     <div class="title">
                         Order details #<span class="orderid">${requestScope.order.orderId}</span>
                     </div>
@@ -89,6 +100,26 @@
                                 </c:when>
                             </c:choose>
                         </span>
+                    </div>
+                    <div class="order-info row pt-4 pb-4">
+                        <div class="col-md-6">
+                            <label class="ps-4 pb-2 text-uppercase">Delivery address</label>
+                            <div class="info p-3 border border-1 rounded">
+                                <div class="fw-bold">${requestScope.shipping.name}</div>
+                                <div>Address: ${requestScope.shipping.address}</div>
+                                <div>Phone: ${requestScope.shipping.phone}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="ps-4 pb-2 pt-3 pt-md-0 text-uppercase">Payment</label>
+                            <div class="ps-1 pe-1">
+                                <div class="p-3 border border-1 rounded">Payment on Delivery (COD)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="ps-4 pb-2 pt-3 pt-md-0 text-uppercase">Note</label>
+                            <div class="p-3 border border-1 rounded">${requestScope.order.note}</div>
+                        </div>
                     </div>
                     <div class="order-table">
                         <table class="table-order-detail">
@@ -133,7 +164,7 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="3">Total money:</td>
-                                    <td><span class="total-money">${requestScope.order.totalPrice} <span>$</span></span></td>
+                                    <td><span class="total-money fs-4 text-danger">${requestScope.order.totalPrice} <span>$</span></span></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -147,6 +178,32 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS -->
         <script src="js/scripts.js"></script>
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Home Slider JS -->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+                                                    $('.js-pscroll').each(function () {
+                                                        $(this).css('position', 'relative');
+                                                        $(this).css('overflow', 'hidden');
+                                                        var ps = new PerfectScrollbar(this, {
+                                                            wheelSpeed: 1,
+                                                            scrollingThreshold: 1000,
+                                                            wheelPropagation: false,
+                                                        });
+
+                                                        $(window).on('resize', function () {
+                                                            ps.update();
+                                                        })
+                                                    });
+        </script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

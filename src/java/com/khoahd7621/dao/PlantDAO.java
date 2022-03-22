@@ -37,6 +37,47 @@ public class PlantDAO {
             + "      , description = ?, status = ?, cateId = ? WHERE pId = ?";
     private static final String INSERT_NEW_PLANT = "INSERT INTO Plants (pName, price, imgPath, description, status, cateId) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String GET_LIST_TOP_PLANTS_RANDOM = "SELECT TOP(?) * FROM Plants WHERE cateId = ? ORDER BY NEWID()";
+    private static final String GET_RANDOM_N_PLANTS = "SELECT TOP(?) * FROM Plants ORDER BY NEWID()";
+    
+    public List<Plant> getRandomNPlants(int quantity) throws SQLException {
+        List<Plant> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                psm = conn.prepareStatement(GET_RANDOM_N_PLANTS);
+                psm.setInt(1, quantity);
+                rs = psm.executeQuery();
+                if (rs != null) {
+                    while (rs.next()) {
+                        int id = rs.getInt("pId");
+                        String fullName = rs.getString("pName");
+                        int price = rs.getInt("price");
+                        String imgPath = rs.getString("imgPath");
+                        String description = rs.getString("description");
+                        int status = rs.getInt("status");
+                        int cateId = rs.getInt("cateId");
+                        Plant plant = new Plant(id, fullName, price, imgPath, description, status, cateId);
+                        list.add(plant);
+                    }
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
     
     public List<Plant> getListTopPlantsRandom(int top, int cateId) throws SQLException {
         List<Plant> list = new ArrayList<>();

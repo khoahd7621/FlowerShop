@@ -3,6 +3,7 @@ package com.khoahd7621.controller.sync;
 import com.khoahd7621.dao.OrderDAO;
 import com.khoahd7621.model.Account;
 import com.khoahd7621.model.Cart;
+import com.khoahd7621.util.SendMailUtils;
 import java.io.IOException;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -70,7 +71,7 @@ public class CheckOutController extends HttpServlet {
             String address = request.getParameter("address");
             String note = request.getParameter("note").trim();
             if (note == null || note.isEmpty() || note.equals("")) {
-                note = "None";
+                note = "No notes";
             }
 
             Account account = (Account) session.getAttribute("LOGIN_USER");
@@ -82,7 +83,7 @@ public class CheckOutController extends HttpServlet {
                     boolean result = new OrderDAO().insertOrder(account.getAccId(), carts, name, phone, address, note);
                     if (result) {
                         session.removeAttribute("carts");
-                        
+
                         // Clear cookie name "cart" from client
                         Cookie[] cookies = request.getCookies();
                         for (Cookie cooky : cookies) {
@@ -91,7 +92,25 @@ public class CheckOutController extends HttpServlet {
                                 response.addCookie(cooky);
                             }
                         }
-                        request.setAttribute("MSG_SUCCESS", "Save your cart successfully!");
+                        try {
+                            String subject = "Your order has been processing";
+                            String message = "<!DOCTYPE html>\n"
+                                    + "<html lang=\"en\">\n"
+                                    + "\n"
+                                    + "<head>\n"
+                                    + "</head>\n"
+                                    + "\n"
+                                    + "<body>\n"
+                                    + "    <h3 style=\"color: blue;\">Thank you very much!</h3>\n"
+                                    + "\n"
+                                    + "</body>\n"
+                                    + "\n"
+                                    + "</html>";
+                            SendMailUtils.send(account.getEmail(), subject, message);
+                        } catch (Exception e) {
+                            log("Error occur when send mail to user after place order sucessfully!");
+                        }
+                        request.setAttribute("MSG_SUCCESS", "Your order has been successfully placed!");
                         request.getRequestDispatcher("carts.jsp").forward(request, response);
                     } else {
                         request.setAttribute("MSG_ERROR", "These products are out of stock!");

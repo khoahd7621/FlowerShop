@@ -22,6 +22,7 @@ public class AccountDAO {
     private static final String UPDATE_ACCOUNT = "UPDATE Accounts Set fullname = ?, phone = ?, password = ? WHERE email = ?";
     private static final String INSERT_ACCOUNT = "INSERT INTO Accounts (email, password, fullname, phone, status, role) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String GET_ACCOUNT_INFO_BY_EMAIL = "SELECT AccID, Email, Password, FullName, Phone, Status, Role FROM Accounts WHERE Email = ?";
+    private static final String GET_AN_ACCOUNT_BY_ID = "SELECT accId, email, password, fullname, phone, status, role FROM Accounts WHERE accId = ?";
     private static final String CHANGE_ACCOUNT_INFO = "UPDATE Accounts SET fullname = ?, phone = ? WHERE email = ?";
     private static final String GET_AN_ACCOUNT_BY_TOKEN = "SELECT AccID, Email, Password, FullName, Phone, Status, Role FROM Accounts WHERE token = ?";
     private static final String UPDATE_TOKEN = "UPDATE Accounts Set token = ? WHERE email = ?";
@@ -227,6 +228,44 @@ public class AccountDAO {
                     int Status = rs.getInt("Status");
                     int Role = rs.getInt("Role");
                     acc = new Account(AccId, Email, "******", FullName, Status, Phone, Role);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return acc;
+    }
+    
+    public Account getAccount(int accId) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        Account acc = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                stm = conn.prepareStatement(GET_AN_ACCOUNT_BY_ID);
+                stm.setInt(1, accId);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    int AccId = rs.getInt("AccID");
+                    String Email = rs.getString("Email");
+                    String Password = rs.getString("Password");
+                    String FullName = rs.getString("FullName");
+                    String Phone = rs.getString("Phone");
+                    int Status = rs.getInt("Status");
+                    int Role = rs.getInt("Role");
+                    acc = new Account(AccId, Email, Password, FullName, Status, Phone, Role);
                 }
             }
         } catch (Exception e) {

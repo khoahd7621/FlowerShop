@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<section class="pt-4 shop-by-category">
+<section class="pt-4 shop-by-category text-black">
     <div class="d-flex align-items-center justify-content-center default-cursor fs-1 section-title">
         <hr class="d-inline-block me-3" width="20%" />
         Shop by Category

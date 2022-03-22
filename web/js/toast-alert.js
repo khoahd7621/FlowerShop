@@ -1,17 +1,18 @@
 function toast({ title = '', message = '', type = 'info', duration = '' }) {
-    const main = document.getElementById('toast');
-    if (main) {
+    const mainToast = document.getElementById('toast');
+    console.log(mainToast)
+    if (mainToast) {
         const toast = document.createElement('div');
 
         // Auto remove toast
         const autoRemoveId = setTimeout(function () {
-            main.removeChild(toast);
+            mainToast.removeChild(toast);
         }, duration + 500);
 
         // Remove toast when clicked
         toast.onclick = function (e) {
             if (e.target.closest('.toast__close')) {
-                main.removeChild(toast);
+                mainToast.removeChild(toast);
                 clearTimeout(autoRemoveId);
             }
         }
@@ -40,6 +41,6 @@ function toast({ title = '', message = '', type = 'info', duration = '' }) {
                         <i class="bi bi-x"></i>
                     </div>
                 `;
-        main.appendChild(toast);
+        mainToast.appendChild(toast);
     }
 }

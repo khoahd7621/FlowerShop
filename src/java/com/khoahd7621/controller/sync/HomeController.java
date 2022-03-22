@@ -1,7 +1,9 @@
 package com.khoahd7621.controller.sync;
 
+import com.khoahd7621.dao.BlogDAO;
 import com.khoahd7621.dao.CategoryDAO;
 import com.khoahd7621.dao.PlantDAO;
+import com.khoahd7621.model.Blog;
 import com.khoahd7621.model.Plant;
 import java.io.IOException;
 import java.util.List;
@@ -33,6 +35,10 @@ public class HomeController extends HttpServlet {
             List<Plant> listBestSellerPlants = new PlantDAO().getTop4PlantsByCateId((int) listCategories.keySet().toArray()[0]);
             sessison.setAttribute("listCategories", listCategories);
             request.setAttribute("listBestSellerPlants", listBestSellerPlants);
+            
+            // Latest Blog Session
+            List<Blog> listBlogs = new BlogDAO().getRandomNLatestBlogs(3);
+            request.setAttribute("listBlogs", listBlogs);
             
             HttpSession session = request.getSession();
             session.setAttribute("urlHistory", "HomeController");

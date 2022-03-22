@@ -5,11 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<footer class="py-3">
+<footer class="py-3 text-black" style="background-color: aliceblue;">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <img class="logo" src="images/logo.png" alt="Shop Logo">
+                <img class="logo" src="images/logo-3.png" alt="Shop Logo">
                 <p class="default-cursor">Duis aute irure dolor in reprehendenderit in voluptate velit esse cillum
                     dolore eu fugiat nulla pariatuur.</p>
             </div>
@@ -45,6 +45,17 @@
                 <div class="default-cursor"><i class="bi bi-envelope"></i> info@myflower.com</div>
             </div>
         </div>
-        <p class="copyright text-center default-cursor">© Copy right 2022 flower. | All Right Reserved.</p>
+        <p class="copyright cl6 txt-center">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-decoration-none">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank" class="text-decoration-none">ThemeWagon</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
     </div>
 </footer>
+
+<!-- Back to top -->
+<div class="btn-back-to-top" id="myBtn">
+    <span class="symbol-btn-back-to-top">
+        <i class="zmdi zmdi-chevron-up"></i>
+    </span>
+</div>

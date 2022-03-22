@@ -22,13 +22,24 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
-    <body>
-        <!-- Contact Head -->
-        <%@include file="components/contactHeadComponent.jsp" %>
-        <!-- Navigation -->
-        <%@include file="components/navBarComponent.jsp" %>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/headerComponent.jsp" %>
         <!-- Sub-nav checkout page -->
         <div id="search-nav" class="d-flex align-items-center">
             <div class="container text-center">
@@ -44,11 +55,11 @@
         <!-- Checkout Session -->
         <section class="mb-5" style="min-height: 250px">
             <div class="container">
-                <h1 class="pb-3 default-cursor">Checkout</h1>
+                <h1 class="pb-4 default-cursor text-black" style="font-size: 50px;">Checkout</h1>
                 <div class="row">
                     <div class="col-lg-8 p-0 pb-3 pe-0 pe-lg-2 pb-lg-0">
                         <div class="rounded shadow p-3 bg-body">
-                            <h3 class="default-cursor">List Products</h3>
+                            <h3 class="default-cursor text-black mb-4">List Products</h3>
                             <table class="table text-center default-cursor">
                                 <thead>
                                     <tr>
@@ -84,11 +95,11 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <h3 class="default-cursor">Total Amount: $${not empty totalMoney ? totalMoney : total}</h3>
+                            <h3 class="text-end default-cursor text-black">Total Amount: <span style="color: red;">$${not empty totalMoney ? totalMoney : total}</span></h3>
                         </div>
                     </div>
-                    <div class="col-lg-4 rounded shadow p-3 bg-body">
-                        <h3>Information Customer</h3>
+                    <div class="col-lg-4 rounded shadow p-3 bg-body text-black" style="height: 460px;">
+                        <h3 class="mb-3">Information Customer</h3>
                         <form action="CheckOutController" method="POST">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
@@ -96,7 +107,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="${sessionScope.LOGIN_USER.phone}">
+                                <input type="text" class="form-control" id="phone" name="phone" value="${sessionScope.LOGIN_USER.phone}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
@@ -118,6 +129,32 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS -->
         <script src="js/scripts.js"></script>
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Home Slider JS -->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+                                                    $('.js-pscroll').each(function () {
+                                                        $(this).css('position', 'relative');
+                                                        $(this).css('overflow', 'hidden');
+                                                        var ps = new PerfectScrollbar(this, {
+                                                            wheelSpeed: 1,
+                                                            scrollingThreshold: 1000,
+                                                            wheelPropagation: false,
+                                                        });
+
+                                                        $(window).on('resize', function () {
+                                                            ps.update();
+                                                        })
+                                                    });
+        </script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

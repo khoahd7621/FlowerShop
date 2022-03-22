@@ -13,6 +13,37 @@ import java.sql.Statement;
  * @author KhoaHD7621
  */
 public class ShippingDAO {
+    
+    public Shipping getShippingById(int shippingId) throws SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT id, name, phone, address FROM Shipping WHERE id = ?";
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                psm = conn.prepareStatement(sql);
+                psm.setInt(1, shippingId);
+                rs = psm.executeQuery();
+                if (rs.next()) {
+                    return new Shipping(rs.getInt("id"), rs.getString("name"), rs.getString("phone"), rs.getString("address"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return null;
+    }
 
     public int createReturnId(Shipping shipping) throws SQLException {
         int num = 0;

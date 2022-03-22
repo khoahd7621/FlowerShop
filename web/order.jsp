@@ -26,13 +26,24 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
-    <body>
-        <!-- Contact Head -->
-        <%@include file="components/contactHeadComponent.jsp" %>
-        <!-- Navigation -->
-        <%@include file="components/navBarComponent.jsp" %>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/headerComponent.jsp" %>
         <!-- Sub-nav Order page -->
         <div id="search-nav" class="d-flex align-items-center">
             <div class="container text-center">
@@ -45,7 +56,7 @@
         </div>
         <!-- Orders List -->
         <div class="container mb-5">
-            <h1 class="pb-3 default-cursor">Welcome, <span class="text-warning">${sessionScope.LOGIN_USER.fullName}</span>!</h1>
+            <h1 class="pb-3 default-cursor text-black">Welcome, <span class="text-warning">${sessionScope.LOGIN_USER.fullName}</span>!</h1>
             <div class="row">
                 <div class="col-md-3">
                     <div class="list-group">
@@ -58,7 +69,7 @@
                         </c:forEach>
                     </div>
                     <!-- Search order by date -->
-                    <form action="SearchOrderController" class="mt-3">
+                    <form action="SearchOrderController" class="mt-3 text-black">
                         <label class="fs-4">Search order</label>
                         <div class="form-group">
                             <label for="dp1">From: </label>
@@ -78,7 +89,7 @@
                     </form>
                 </div>
                 <div class="col-md-9 default-cursor">
-                    <h3 class="text-center mb-4 pt-4 pt-md-0">List Orders</h3>
+                    <h3 class="text-center mb-4 pt-4 pt-md-0 text-black">List Orders</h3>
                     <c:choose>
                         <c:when test="${not empty requestScope.MSG_SUCCESS}">
                             <div class="alert alert-success" role="alert">
@@ -187,8 +198,7 @@
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                                            <c:url var="orderAgain" value="UpdateOrderController">
-                                                                                <c:param name="orderStatuss" value="${O.status}"></c:param>
+                                                                            <c:url var="orderAgain" value="OrderAgainController">
                                                                                 <c:param name="orderId" value="${O.orderId}"></c:param>
                                                                             </c:url>
                                                                             <a href="${orderAgain}" type="button" class="btn btn-danger">Reorder</a>
@@ -242,6 +252,30 @@
 
             }).on('changeDate', function (ev) { });
         </script>
+        <!-- Home Slider JS -->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+                                                    $('.js-pscroll').each(function () {
+                                                        $(this).css('position', 'relative');
+                                                        $(this).css('overflow', 'hidden');
+                                                        var ps = new PerfectScrollbar(this, {
+                                                            wheelSpeed: 1,
+                                                            scrollingThreshold: 1000,
+                                                            wheelPropagation: false,
+                                                        });
+
+                                                        $(window).on('resize', function () {
+                                                            ps.update();
+                                                        })
+                                                    });
+        </script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

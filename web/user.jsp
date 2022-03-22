@@ -22,13 +22,24 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
-    <body>
-        <!-- Contact Head -->
-        <%@include file="components/contactHeadComponent.jsp" %>
-        <!-- Navigation -->
-        <%@include file="components/navBarComponent.jsp" %>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/headerComponent.jsp" %>
         <!-- Sub-nav personal page -->
         <div id="search-nav" class="d-flex align-items-center">
             <div class="container text-center">
@@ -41,11 +52,11 @@
         </div>
         <!-- Personal Session -->
         <div class="container mb-5">
-            <h1 class="pb-3 default-cursor">Welcome, <span class="text-warning">${sessionScope.LOGIN_USER.fullName}</span>!</h1>
+            <h1 class="pb-3 default-cursor text-black">Welcome, <span class="text-warning">${sessionScope.LOGIN_USER.fullName}</span>!</h1>
             <section>
                 <div class="container">
                     <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col-12 col-md-9 col-lg-7 col-xl-6 mb-4">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6 mb-4 text-black">
                             <h3 class="text-uppercase text-center mb-4 default-cursor">
                                 Your information
                             </h3>
@@ -196,6 +207,32 @@
         <script src="js/scripts.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/my-user.js"></script>
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Home Slider JS -->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+                                                    $('.js-pscroll').each(function () {
+                                                        $(this).css('position', 'relative');
+                                                        $(this).css('overflow', 'hidden');
+                                                        var ps = new PerfectScrollbar(this, {
+                                                            wheelSpeed: 1,
+                                                            scrollingThreshold: 1000,
+                                                            wheelPropagation: false,
+                                                        });
+
+                                                        $(window).on('resize', function () {
+                                                            ps.update();
+                                                        })
+                                                    });
+        </script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

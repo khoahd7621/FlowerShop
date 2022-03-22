@@ -8,7 +8,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -22,13 +21,24 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
-    <body>
-        <!-- Contact Head -->
-        <%@include file="components/contactHeadComponent.jsp" %>
-        <!-- Navigation -->
-        <%@include file="components/navBarComponent.jsp" %>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/headerComponent.jsp" %>
         <!-- Toast MSG -->
         <div id="toast"></div>
         <!-- Sub-nav product page -->
@@ -45,7 +55,7 @@
         <div class="container mb-5">
             <div class="row">
                 <div class="col-md-3">
-                    <h3 class="mb-4 default-cursor">List Categories</h3>
+                    <h3 class="mb-4 default-cursor text-black">List Categories</h3>
                     <div class="list-group">
                         <a type="button" class="list-group-item list-group-item-action ${(empty requestScope.category)? "active" : ""}" href="ViewAllController">All plants</a>
                         <c:forEach items="${sessionScope.listCategories}" var="L">
@@ -57,7 +67,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 default-cursor">
-                    <div class="d-flex align-items-center justify-content-center section-title mb-4 pt-4 pt-md-0" style="font-size: 35px !important;">
+                    <div class="d-flex align-items-center justify-content-center section-title mb-4 pt-4 pt-md-0 text-black" style="font-size: 35px !important;">
                         <hr class="d-inline-block me-3" width="15%" />
                         List Products
                         <hr class="d-inline-block ms-3" width="15%" />
@@ -79,9 +89,7 @@
                                             <c:url var="linkImg" value="PlantDetailController">
                                                 <c:param name="pid" value="${LP.id}"></c:param>
                                             </c:url>
-                                            <a href="${linkImg}"><img class="card-img-top img-h-350"
-                                                                      src="${LP.imgPath}"
-                                                                      alt="..." /></a>
+                                            <a href="${linkImg}" class="img-h-350"><img src="${LP.imgPath}" alt="Plant IMG" /></a>
                                             <!-- Product details-->
                                             <div class="card-body p-2">
                                                 <div class="text-center product-info">
@@ -106,7 +114,7 @@
                                                         <div class="bi-star-fill"></div>
                                                     </div>
                                                     <!-- Product price-->
-                                                    <div class="price text-center fs-4 fw-bold default-cursor">
+                                                    <div class="price text-center fs-4 fw-bold default-cursor text-black">
                                                         <span class="text-muted text-decoration-line-through">$20</span>
                                                         $${LP.price}
                                                     </div>
@@ -154,6 +162,8 @@
                 </div>
             </div>
         </div>
+        <!-- Subscribe News Letter -->
+        <%@include file="components/subscribeNewsLetterComponent.jsp" %>
         <!-- Footer -->
         <%@include file="components/footerComponent.jsp" %>
         <!-- Bootstrap core JS -->
@@ -162,6 +172,35 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="js/toast-alert.js"></script>
         <script src="js/add-to-cart-async.js"></script>
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Toast Alert script -->
+        <script src="js/toast-alert.js"></script>
+        <script src="js/subscribe-newsletter.js"></script>
+        <!-- Home Slider JS -->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+                                                        $('.js-pscroll').each(function () {
+                                                            $(this).css('position', 'relative');
+                                                            $(this).css('overflow', 'hidden');
+                                                            var ps = new PerfectScrollbar(this, {
+                                                                wheelSpeed: 1,
+                                                                scrollingThreshold: 1000,
+                                                                wheelPropagation: false,
+                                                            });
+
+                                                            $(window).on('resize', function () {
+                                                                ps.update();
+                                                            })
+                                                        });
+        </script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

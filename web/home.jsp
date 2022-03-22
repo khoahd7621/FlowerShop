@@ -12,8 +12,6 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content=""/>
-        <meta name="author" content=""/>
         <title>Home</title>
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="./images/favicon.png"/>
@@ -22,20 +20,37 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/ionicons.min.css">
+        <!-- Wow Library for animate -->
+        <link rel='stylesheet' href='https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css'>
+        <script src='https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js'></script>
+        <script> new WOW().init();</script>
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
-    <body>
-        <!-- Contact Head -->
-        <%@include file="components/contactHeadComponent.jsp" %>
-        <!-- Navigation -->
-        <%@include file="components/navBarComponent.jsp" %>
-        <!-- Banner 1 -->
-        <%@include file="components/homeBanner1Component.jsp" %>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/homeHeaderComponent.jsp" %>
+        <!-- Home Slider -->
+        <%@include file="components/homeSliderComponent.jsp" %>
         <!-- Toast MSG -->
         <div id="toast"></div>
         <!-- Section Deal of the Day -->
         <section class="pt-5">
-            <div class="pt-4 d-flex align-items-center justify-content-center fs-1 section-title">
+            <div class="text-black d-flex align-items-center justify-content-center fs-1 section-title wow fadeInDown" data-wow-duration="1s" data-wow-delay="0s">
                 <hr class="d-inline-block me-3" width="20%" />
                 Our Products
                 <hr class="d-inline-block ms-3" width="20%" />
@@ -55,9 +70,7 @@
                                 <c:url var="linkImg" value="PlantDetailController">
                                     <c:param name="pid" value="${LPS.id}"></c:param>
                                 </c:url>
-                                <a href="${linkImg}"><img class="card-img-top img-h-350"
-                                                          src="${LPS.imgPath}"
-                                                          alt="" /></a>
+                                <a href="${linkImg}" class="img-h-350"><img src="${LPS.imgPath}" alt="Plant IMG" /></a>
                                 <!-- Product details-->
                                 <div class="card-body p-2">
                                     <div class="text-center product-info">
@@ -82,8 +95,8 @@
                                             <div class="bi-star-fill"></div>
                                         </div>
                                         <!-- Product price-->
-                                        <div class="price text-center fs-4 fw-bold default-cursor">
-                                            <span class="text-muted text-decoration-line-through">$20</span>
+                                        <div class="price text-center fs-4 fw-bold default-cursor text-black">
+                                            <span class="text-muted text-decoration-line-through">$100</span>
                                             $${LPS.price}
                                         </div>
                                     </div>
@@ -112,12 +125,12 @@
         <!-- Section Loyalty -->
         <%@include file="components/loyaltyComponent.jsp" %>
         <!-- Section Best Seller -->
-        <section class="pt-5">
+        <section class="pt-5 text-black">
             <div style="background-color: #f3f3f3;">
                 <div class="pt-5 d-flex align-items-center justify-content-center fs-1 section-title">
-                    <hr class="d-inline-block me-3" width="20%" />
+                    <hr class="d-inline-block me-3" width="15%" />
                     Best Seller
-                    <hr class="d-inline-block ms-3" width="20%" />
+                    <hr class="d-inline-block ms-3" width="15%" />
                 </div>
                 <div class="container px-4 px-lg-5 mt-3">
                     <div class="btn-group mb-5" role="group" aria-label="Basic radio toggle button group">
@@ -140,9 +153,7 @@
                                     <c:url var="linkImg" value="PlantDetailController">
                                         <c:param name="pid" value="${LBSP.id}"></c:param>
                                     </c:url>
-                                    <a href="${linkImg}"><img class="card-img-top img-h-350"
-                                                              src="${LBSP.imgPath}"
-                                                              alt="..." /></a>
+                                    <a href="${linkImg}" class="img-h-350"><img src="${LBSP.imgPath}" alt="Plant IMG" /></a>
                                     <!-- Product details-->
                                     <div class="card-body p-2">
                                         <div class="text-center product-info">
@@ -168,7 +179,7 @@
                                             </div>
                                             <!-- Product price-->
                                             <div class="price text-center fs-4 fw-bold default-cursor">
-                                                <span class="text-muted text-decoration-line-through">$20</span>
+                                                <span class="text-muted text-decoration-line-through">$100</span>
                                                 $${LBSP.price}
                                             </div>
                                         </div>
@@ -196,14 +207,15 @@
         <%@include file="components/shopByCategoryComponents.jsp" %>
         <!-- Latest Blog -->
         <%@include file="components/homeLatestBlogComponent.jsp" %>
-        <c:if test="${empty sessionScope.LOGIN_USER}">
-            <!-- Subscribe News Letter -->
-            <%@include file="components/subscribeNewsLetterComponent.jsp" %>
-        </c:if>
+        <!-- Client Review -->
+        <%@include file="components/clientReviewComponent.jsp" %>
+        <!-- Subscribe News Letter -->
+        <%@include file="components/subscribeNewsLetterComponent.jsp" %>
         <!-- Footer -->
         <%@include file="components/footerComponent.jsp" %>
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/bootstrap.js"></script>
         <!-- Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- Toast Alert script -->
@@ -216,6 +228,30 @@
         <script src="js/load-more.js"></script>
         <!-- Subscribe News Letter script -->
         <script src="js/subscribe-newsletter.js"></script>
+        <!-- Home Slider JS -->
+	<script src="vendor/slick/slick.min.js"></script>
+	<script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function () {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function () {
+				ps.update();
+			})
+		});
+	</script>
+        <!-- -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

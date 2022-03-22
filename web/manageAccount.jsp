@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tag" uri="/WEB-INF/tlds/mytaglib.tld"  %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,24 +48,12 @@
                                 <table id="adminAccountTable">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Email</th>
-                                            <th>Name</th>
-                                            <th>Password</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Role</th>
+                                            <tag:thAccountTable/>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Email</th>
-                                            <th>Name</th>
-                                            <th>Password</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Role</th>
+                                            <tag:thAccountTable/>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -95,25 +84,13 @@
                                 <table id="activeUserAccountTable">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Email</th>
-                                            <th>Name</th>
-                                            <th>Password</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Role</th>
+                                            <tag:thAccountTable/>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Email</th>
-                                            <th>Name</th>
-                                            <th>Password</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Role</th>
+                                            <tag:thAccountTable/>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -176,25 +153,13 @@
                                 <table id="inactiveUserAccountTable">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Email</th>
-                                            <th>Name</th>
-                                            <th>Password</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Role</th>
+                                            <tag:thAccountTable/>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Email</th>
-                                            <th>Name</th>
-                                            <th>Password</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Role</th>
+                                            <tag:thAccountTable/>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

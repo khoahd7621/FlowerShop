@@ -22,13 +22,24 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
-    <body>
-        <!-- Contact Head -->
-        <%@include file="components/contactHeadComponent.jsp" %>
-        <!-- Navigation -->
-        <%@include file="components/navBarComponent.jsp" %>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/headerComponent.jsp" %>
         <!-- Sub-nav search page -->
         <div id="search-nav" class="d-flex align-items-center">
             <div class="container text-center">
@@ -46,7 +57,7 @@
             <!-- No Result -->
             <div id="no-result" class="mb-5">
                 <div class="container">
-                    <span class="sub-title fs-3">Couldn't find any results for the above keywords.</span>
+                    <span class="sub-title fs-3 text-black">Couldn't find any results for the above keywords.</span>
                     <div class="main-title">Enter keywords to search</div>
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-9">
@@ -71,7 +82,7 @@
             <!-- Have result -->
             <div id="result" class="pt-4">
                 <div class="container">
-                    <div class="main-title">
+                    <div class="main-title text-black">
                         There are <span>${requestScope.totalPlants}</span> matching search results
                     </div>
                     <div class="container px-4 px-lg-5 mt-4">
@@ -89,9 +100,7 @@
                                         <c:url var="linkImg" value="PlantDetailController">
                                             <c:param name="pid" value="${L.id}"></c:param>
                                         </c:url>
-                                        <a href="${linkImg}"><img class="card-img-top img-h-350"
-                                                                  src="${L.imgPath}"
-                                                                  alt="..." /></a>
+                                        <a href="${linkImg}" class="img-h-350"><img src="${L.imgPath}" alt="Plant Img" /></a>
                                         <!-- Product details-->
                                         <div class="card-body p-2">
                                             <div class="text-center product-info">
@@ -116,7 +125,7 @@
                                                     <div class="bi-star-fill"></div>
                                                 </div>
                                                 <!-- Product price-->
-                                                <div class="price text-center fs-4 fw-bold default-cursor">
+                                                <div class="price text-center fs-4 fw-bold default-cursor text-black">
                                                     <span class="text-muted text-decoration-line-through">$20</span>
                                                     $${L.price}
                                                 </div>
@@ -161,6 +170,8 @@
                 </div>
             </div>
         </c:if>
+        <!-- Subscribe News Letter -->
+        <%@include file="components/subscribeNewsLetterComponent.jsp" %>
         <!-- Footer -->
         <%@include file="components/footerComponent.jsp" %>
         <!-- Bootstrap core JS -->
@@ -169,6 +180,35 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="js/toast-alert.js"></script>
         <script src="js/add-to-cart-async.js"></script>
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Toast Alert script -->
+        <script src="js/toast-alert.js"></script>
+        <script src="js/subscribe-newsletter.js"></script>
+        <!-- Home Slider JS -->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+                                                    $('.js-pscroll').each(function () {
+                                                        $(this).css('position', 'relative');
+                                                        $(this).css('overflow', 'hidden');
+                                                        var ps = new PerfectScrollbar(this, {
+                                                            wheelSpeed: 1,
+                                                            scrollingThreshold: 1000,
+                                                            wheelPropagation: false,
+                                                        });
+
+                                                        $(window).on('resize', function () {
+                                                            ps.update();
+                                                        })
+                                                    });
+        </script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>

@@ -88,6 +88,12 @@ public class AuthenFilter implements Filter {
         USER_LIST.add("LoadMoreController");
         USER_LIST.add("AddToCartAsyncController");
         USER_LIST.add("PlantDetailController");
+        USER_LIST.add("blog.jsp");
+        USER_LIST.add("blog");
+        USER_LIST.add("blogDetail");
+        USER_LIST.add("blogdetail.jsp");
+        USER_LIST.add("OrderAgainController");
+        USER_LIST.add("orderAgain.jsp");
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
@@ -151,7 +157,7 @@ public class AuthenFilter implements Filter {
             HttpServletResponse res = (HttpServletResponse) response;
             String uri = req.getRequestURI();
             // Pass .jpg, .pgn, .gif, .css files
-            if (uri.contains(".jpg") || uri.contains(".png") || uri.contains(".gif") || uri.contains(".css")) {
+            if (uri.contains(".jpg") || uri.contains(".png") || uri.contains(".gif") || uri.contains(".css") || uri.contains("fonts")) {
                 chain.doFilter(request, response);
                 return;
             }
@@ -206,7 +212,11 @@ public class AuthenFilter implements Filter {
                         || uri.contains("ViewAllController")
                         || uri.contains("SendEmailController")
                         || uri.contains("AddToCartAsyncController")
-                        || uri.contains("LoginGoogleController")) {
+                        || uri.contains("LoginGoogleController")
+                        || uri.contains("blog.jsp")
+                        || uri.contains("blog")
+                        || uri.contains("blogdetail.jsp")
+                        || uri.contains("blogDetail")) {
                     chain.doFilter(request, response);
                 } else {
                     res.sendRedirect(HOME);

@@ -6,29 +6,37 @@ function addToCartAsync(pid) {
         responseType: 'json'
     }).then((response) => {
         // Update number plant in carts
-        document.getElementById("cartNum").innerHTML = response.data.length;
-        document.getElementById("cartBox").innerHTML = `<div class="unempty-cart">
-                                                            <div class="text-start ms-4">New products added</div>
-                                                            <div id="cartBoxBody"></div>
-                                                            <div class="text-end pt-3 pe-3">
-                                                                <a href="CartController" class="btn btn-danger pe-3">View cart</a>
-                                                            </div>
-                                                        </div>`;
+        document.getElementById("cartNumPC").setAttribute('data-notify', response.data.length);
+        document.getElementById("cartNumMB").setAttribute('data-notify', response.data.length);
+        document.getElementById("cartBox").innerHTML = `
+                    <div class="header-cart-content flex-w js-pscroll">
+                        <ul id="cartBoxBody" class="header-cart-wrapitem w-full p-0">
+                        </ul>
+                    </div>`;
         let cartBoxBody = document.getElementById("cartBoxBody");
         let plants = response.data;
         for (let i = 0; i < plants.length; i++) {
-            cartBoxBody.innerHTML += `<div class="product row mt-2 w-100 m-0">
-                                        <div class="col-2">
-                                            <img class="img-fluid border border-1" src="${plants[i]['imgPath']}" alt="Product Images">
-                                        </div>
-                                        <div class="col-8 default-cursor">
-                                            ${plants[i]['name']}
-                                        </div>
-                                        <div class="col-2 default-cursor text-danger">
-                                            $${plants[i]['price']}
-                                        </div>
-                                    </div>`;
+            cartBoxBody.innerHTML += `<li class="header-cart-item flex-w flex-t m-b-12">
+                                            <div class="header-cart-item-img">
+                                                <img src="${plants[i]['imgPath']}" alt="IMG">
+                                            </div>
+                                            <div class="header-cart-item-txt p-t-8">
+                                                <a href="PlantDetailController?pid=" class="header-cart-item-name m-b-18 hov-cl1 trans-04 text-decoration-none">
+                                                    ${plants[i]['name']}
+                                                </a>
+                                                <span class="header-cart-item-info">
+                                                    $${plants[i]['price']}
+                                                </span>
+                                            </div>
+                                      </li>`;
         }
+        document.getElementById("cartBarBtn").innerHTML = `
+                            <a href="CartController" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10 text-decoration-none">
+                                View Cart
+                            </a>
+                            <a href="CheckOutController" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 text-decoration-none">
+                                Check Out
+                            </a>`;
 
         toast({
             title: 'Success',

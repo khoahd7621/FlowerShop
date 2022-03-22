@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="tag" uri="/WEB-INF/tlds/mytaglib.tld" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,13 +23,24 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/my-styles.css" rel="stylesheet">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
 
-    <body>
-        <!-- Contact Head -->
-        <%@include file="components/contactHeadComponent.jsp" %>
-        <!-- Navigation -->
-        <%@include file="components/navBarComponent.jsp" %>
+    <body class="animsition">
+        <!-- Home Menu -->
+        <%@include file="components/headerComponent.jsp" %>
         <!-- Sub-nav cart page -->
         <div id="search-nav" class="d-flex align-items-center">
             <div class="container text-center">
@@ -47,7 +59,7 @@
                         <h1>Cart is empty!</h1>
                     </c:when>
                     <c:otherwise>
-                        <h3>List Products</h3>
+                        <h3 class="text-black mb-3" style="font-size: 45px;">List Products</h3>
                         <table class="table text-center">
                             <thead>
                                 <tr>
@@ -61,53 +73,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${carts}" var="C">
-                                <form action="UpdateCartQuantityController">
-                                    <tr>
-                                        <td>${C.value.plant.id}</td><input type="hidden" name="pid" value="${C.value.plant.id}">
-                                    <td><img src="${C.value.plant.imgPath}" width="100"></td>
-                                    <td>${C.value.plant.name}</td>
-                                    <td>$${C.value.plant.price}</td>
-                                    <td><input onchange="this.form.submit()" type="number" min="1" name="quantity" value="${C.value.quantity}"></td>
-                                    <td>$${C.value.plant.price * C.value.quantity}</td>
-                                    <td>
-                                        <!-- Block btn -->
-                                        <span>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#blockBtn${C.value.plant.id}">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="blockBtn${C.value.plant.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="p-4 text-center fs-3"
-                                                             style="color: red;">
-                                                            Are you sure you want to remove plant "<span class="text-dark">${C.value.plant.name}</span>" from your cart?
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                            <c:url var="deleteLink" value="DeleteCartController">
-                                                                <c:param name="pid" value="${C.value.plant.id}"></c:param>
-                                                            </c:url>
-                                                            <a href="${deleteLink}" class="btn btn-danger">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </span>
-                                    </td>
-                                    </tr>
-                                </form>
+                            <c:forEach items="${carts}" var="C">
+                                <tag:productCart id="${C.value.plant.id}" imgpath="${C.value.plant.imgPath}" name="${C.value.plant.name}" price="${C.value.plant.price}" quantity="${C.value.quantity}"/>
                             </c:forEach>
                             </tbody>
                         </table>
                         <div class="row">
-                            <h3 class="col-6">Total Amount: $${totalMoney}</h3>
+                            <h3 class="col-6 text-black">Total Amount: $${totalMoney}</h3>
                             <div class="col-6 text-end">
                                 <c:url var="checkOut" value="CheckOutController"></c:url>
                                 <a class="btn btn-success text-white btn-lg" href="${checkOut}">Check out</a>
@@ -131,12 +103,43 @@
                 </c:if>
             </div>
         </section>
+        <!-- Subscribe News Letter -->
+        <%@include file="components/subscribeNewsLetterComponent.jsp" %>
         <!-- Footer -->
         <%@include file="components/footerComponent.jsp" %>
         <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS -->
         <script src="js/scripts.js"></script>
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Toast Alert script -->
+        <script src="js/toast-alert.js"></script>
+        <script src="js/subscribe-newsletter.js"></script>
+        <!-- Home Slider JS -->
+        <script src="vendor/slick/slick.min.js"></script>
+        <script src="js/slick-custom.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script>
+                                                    $('.js-pscroll').each(function () {
+                                                        $(this).css('position', 'relative');
+                                                        $(this).css('overflow', 'hidden');
+                                                        var ps = new PerfectScrollbar(this, {
+                                                            wheelSpeed: 1,
+                                                            scrollingThreshold: 1000,
+                                                            wheelPropagation: false,
+                                                        });
+
+                                                        $(window).on('resize', function () {
+                                                            ps.update();
+                                                        })
+                                                    });
+        </script>
+        <!-- Main -->
+        <script src="js/main.js"></script>
     </body>
 
 </html>
