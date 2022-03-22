@@ -52,7 +52,7 @@
         </div>
         <!-- Orders Detail -->
         <div class="container mb-5">
-            <h1 class="pb-3 default-cursor">Welcome, <span class="text-warning">${sessionScope.LOGIN_USER.fullName}</span>!</h1>
+            <h1 class="pb-3 default-cursor text-black">Welcome, <span class="text-warning">${sessionScope.LOGIN_USER.fullName}</span>!</h1>
             <div class="row">
                 <div class="col-lg-3">
                     <div class="list-group">
@@ -65,7 +65,7 @@
                         </c:forEach>
                     </div>
                 </div>
-                <div id="order-detail-body" class="col-lg-9 default-cursor position-relative mt-4 mt-lg-0">
+                <div id="order-detail-body" class="col-lg-9 default-cursor position-relative mt-4 mt-lg-0 text-black">
                     <div class="title">
                         Order details #<span class="orderid">${requestScope.order.orderId}</span>
                     </div>
