@@ -6,14 +6,16 @@ Live Demo: :point_right: [here]()
 
 ## You will find in this repo the following stuff:
 * The Java web source used to develop flower e-commerce shopping
-* Login by gmail
-* Send mail after checkout cart, subscribe news letters, ...
+* Register an account with your username and password
+* Sign up with a google account
+* Login with registered account or quickly with google account
+* Automatically send email after checkout cart
+* Automatically send email Subscribe receive news letters
 * Authorizing client, user, admin by filter
 * Custom tag for showing all products in cart
-* Add to cart don't reload page by using ajax (axios)
-* Design pattern MVC2 Modal
-* Paging or load more products by using ajax
-* .gitignore file and README.md file to manage the content of this repo
+* Add to cart don't reload page by using axios
+* Design pattern MVC2 Model
+* Paging or load more products don't reload page by using ajax
 * ...
 
 ## Table of Contents
@@ -68,8 +70,8 @@ Live Demo: :point_right: [here]()
 - HTML, CSS, JS, Bootstrap, jQuery
 - JSP - JavaServer Pages
 - JSTL - JSP Standard Tag Library
-- axios - Promise based HTTP client for the browser and node.js
-- wow js plugin for animation
+- Axios - Promise based HTTP client for the browser and node.js
+- Wow js plugin for animation
 - ...
 
 **2. Backend**
@@ -151,12 +153,12 @@ Live Demo: :point_right: [here]()
 
 #| Name | Description
 -| ---- | -----------
-1| [web Folder](https://github.com/khoahd7621/FlowerShop/tree/main/web) | -----------
-2| [src Folder](https://github.com/khoahd7621/FlowerShop/tree/main/src) | -----------
-3| [Database File](https://github.com/khoahd7621/FlowerShop/blob/main/Database-Plant-Shop.sql) | -----------
-4| [META-INF Folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/META-INF) | -----------
-5| [WEB-INF Folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/WEB-INF) | -----------
-6| [libs Folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/WEB-INF/libs) | -----------
+1| [web folder](https://github.com/khoahd7621/FlowerShop/tree/main/web) | -----------
+2| [src folder](https://github.com/khoahd7621/FlowerShop/tree/main/src) | -----------
+3| [Database file](https://github.com/khoahd7621/FlowerShop/blob/main/Database-Plant-Shop.sql) | -----------
+4| [META-INF folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/META-INF) | -----------
+5| [WEB-INF folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/WEB-INF) | -----------
+6| [libs folder](https://github.com/khoahd7621/FlowerShop/tree/main/web/WEB-INF/libs) | -----------
 
 ## Learn More
 
